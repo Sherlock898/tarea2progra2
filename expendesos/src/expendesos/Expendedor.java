@@ -12,9 +12,9 @@ public class Expendedor {
         depFanta= new Deposito();
         depSprite = new Deposito();
         for(int i = 0; i < numBebidas; i++){
-            depCoca.addBebida(new CocaCola());
-            depFanta.addBebida(new Fanta());
-            depSprite.addBebida(new Sprite());
+            depCoca.addBebida(new CocaCola(i));
+            depFanta.addBebida(new Fanta(i + 100));
+            depSprite.addBebida(new Sprite(i + 200));
         }
         this.precioBebidas = precioBebidas;
     }
