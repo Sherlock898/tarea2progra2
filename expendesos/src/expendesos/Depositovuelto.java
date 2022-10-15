@@ -8,6 +8,6 @@ package expendesos;
  *
  * @author franc
  */
-public class Depositovuelto {
+public class DepositoVuelto {
     
 }
