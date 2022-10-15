@@ -1,13 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package expendesos;
+import java.util.ArrayList;
 
-/**
- *
- * @author franc
- */
 public class DepositoVuelto {
+    private ArrayList<Moneda> arr;
     
+    public DepositoVuelto(){
+        arr = new ArrayList<Moneda>();
+    }
+    
+    public void addBebida(Moneda moneda){
+        arr.add(moneda);
+    }
+    
+    public Moneda getMoneda(){
+        if(arr.size() > 0){
+            return arr.remove(0);
+        }
+        else{
+            return null;
+        }
+    }
 }
