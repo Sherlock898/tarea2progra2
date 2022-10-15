@@ -1,13 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package expendesos;
 
-/**
- *
- * @author Si2
- */
 public class Expendedor {
+    
+    
+    public Expendedor(int numBebidas, int precioBebidas){
+        
+    }
+    
+    public Bebida comprarBebida(Moneda m, int cual){
+        
+    }
     
 }
