@@ -1,10 +1,11 @@
 package expendesos;
 
 public class Expendedor {
-    Deposito depCoca;
-    Deposito depFanta;
-    Deposito depSprite;
-    DepositoVuelto depVuelto;
+    private Deposito depCoca;
+    private Deposito depFanta;
+    private Deposito depSprite;
+    private DepositoVuelto depVuelto;
+    private int precioBebidas;
     
     public Expendedor(int numBebidas, int precioBebidas){
         depCoca = new Deposito();
@@ -15,10 +16,56 @@ public class Expendedor {
             depFanta.addBebida(new Fanta());
             depSprite.addBebida(new Sprite());
         }
+        this.precioBebidas = precioBebidas;
     }
     
     public Bebida comprarBebida(Moneda m, int cual){
-        return new Bebida();
+        //throws NoHayBebidaException PagoInsuficienteException, PagoIncorrectoException;
+        if(m == null){
+            System.out.print("PagoIncorrectoException");
+            return null;
+        }
+        
+        if(m.getValor() < precioBebidas){
+            System.out.print("PagoInsuficienteExeption");
+            depVuelto.addMoneda(m);
+            return null;
+        }
+        
+        Bebida bebida;
+
+        switch (cual) {
+            case 1:
+                bebida = depCoca.getBebida();
+                break;
+            case 2:
+                bebida = depSprite.getBebida();
+                break;
+            case 3:
+                bebida = depFanta.getBebida();
+                break;
+            default:
+                System.out.println("NoHayBebidaExeption");
+                depVuelto.addMoneda(m);
+                return null;
+        }
+
+        if(bebida == null){
+            System.out.println("NoHayBebidaExeption");
+            depVuelto.addMoneda(m);
+            return null;
+        }
+
+        //compra exitosa
+        for(int i = 0; i < (m.getValor() - precioBebidas) / 100; i++){
+            depVuelto.addMoneda(new Moneda100());
+        }
+
+        return bebida;
+
     }
     
+    public Moneda getVuelto(){
+        return depVuelto.getMoneda();
+    }
 }

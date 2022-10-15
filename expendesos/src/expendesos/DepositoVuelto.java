@@ -8,7 +8,7 @@ public class DepositoVuelto {
         arr = new ArrayList<Moneda>();
     }
     
-    public void addBebida(Moneda moneda){
+    public void addMoneda(Moneda moneda){
         arr.add(moneda);
     }
     
