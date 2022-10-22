@@ -6,13 +6,26 @@ public class Comprador {
     
     public Comprador(Moneda m, int cualBebida, Expendedor exp){
         cantidadTotal = 0;
-        Bebida bebida = exp.comprarBebida(m, cualBebida);
-        if(bebida != null){
-            sabor = bebida.beber();
-        }
-        else{
+        Bebida bebida;
+        try {
+            bebida = exp.comprarBebida(m, cualBebida);
+        } catch (NoHayBebidaException e) {
+            cantidadTotal += exp.getVuelto().getValor();
             sabor = "Nada";
+            e.printStackTrace();
+            return;
+        } catch (PagoInsuficienteException e) {
+            cantidadTotal += exp.getVuelto().getValor();
+            sabor = "Nada";
+            e.printStackTrace();
+            return;
+        } catch (PagoIncorrectoException e) {
+            sabor = "Nada";
+            e.printStackTrace();
+            return;
         }
+
+        sabor = bebida.beber();
         
         Moneda vuelto = exp.getVuelto();
         while(vuelto != null){

@@ -8,6 +8,7 @@ public class Expendedor {
     private int precioBebidas;
     
     public Expendedor(int numBebidas, int precioBebidas){
+        depVuelto = new DepositoVuelto();
         depCoca = new Deposito();
         depFanta= new Deposito();
         depSprite = new Deposito();
@@ -19,17 +20,14 @@ public class Expendedor {
         this.precioBebidas = precioBebidas;
     }
     
-    public Bebida comprarBebida(Moneda m, int cual){
-        //throws NoHayBebidaException PagoInsuficienteException, PagoIncorrectoException;
+    public Bebida comprarBebida(Moneda m, int cual) throws NoHayBebidaException, PagoInsuficienteException, PagoIncorrectoException{
         if(m == null){
-            System.out.print("PagoIncorrectoException");
-            return null;
+            throw new PagoIncorrectoException("Pago Incorrecto");
         }
         
         if(m.getValor() < precioBebidas){
-            System.out.print("PagoInsuficienteExeption");
             depVuelto.addMoneda(m);
-            return null;
+            throw new PagoInsuficienteException("Pago insuficiente");
         }
         
         Bebida bebida;
@@ -45,15 +43,13 @@ public class Expendedor {
                 bebida = depFanta.getBebida();
                 break;
             default:
-                System.out.println("NoHayBebidaExeption");
                 depVuelto.addMoneda(m);
-                return null;
+                throw new NoHayBebidaException("No hay bebida");
         }
 
         if(bebida == null){
-            System.out.println("NoHayBebidaExeption");
             depVuelto.addMoneda(m);
-            return null;
+            throw new NoHayBebidaException("No hay bebida");
         }
 
         //compra exitosa
