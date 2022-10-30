@@ -12,16 +12,16 @@ public class Comprador {
         } catch (NoHayBebidaException e) {
             cantidadTotal += exp.getVuelto().getValor();
             sabor = "Nada";
-            e.printStackTrace();
+            System.out.println(e);
             return;
         } catch (PagoInsuficienteException e) {
             cantidadTotal += exp.getVuelto().getValor();
             sabor = "Nada";
-            e.printStackTrace();
+            System.out.println(e);
             return;
         } catch (PagoIncorrectoException e) {
             sabor = "Nada";
-            e.printStackTrace();
+            System.out.println(e);
             return;
         }
 
